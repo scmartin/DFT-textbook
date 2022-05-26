@@ -1,0 +1,111 @@
+\documentclass{report}
+\usepackage{amsmath}
+
+\author{Seth C. Martin}
+\title{A derivation of classical Density Functional Theory}
+
+\newcommand{\trace}{\operatorname{Tr_{cl}}}
+
+\begin{document}
+\maketitle
+\chapter{Basic formalism}
+The historical origins of classical density functional theory (cDFT) are as an extension of the density functional theory developed by Hohenberg and Kohn\cite{Hohenberg} for the ground state electron density. Mermin\cite{Mermin} extended this theory to quantum systems of non-zero temperature. The ideas of functional derivatives were used extensively in linking fluid structure and other statistical mechanical properties to thermodynamic quantities, but Robert Evans provided perhaps the most straightforward derivation of the cDFT formalism as it is most widely used today.\cite{Evans} The derivation presented here will largely follow Evans'.
+
+To begin, we need to know what problem we are trying to solve. The essential idea is that, based on the work of Hohenberg, Kohn, and Mermin, the energy (or free energy) of a system of particles can be expressed as a functional of the equilibrium particle density distribution. More particularly, this functional is minimized by the equilibrium partile density distribution, such that for any other density distribution, the functional will yield a value of the free energy that is larger than the true equilibrium value. This property is very useful, as it allows one to evaluate the functional with a test density distribution, and adjust the test density until a minimum value of the free energy is reached. Therefore, if we know the free energy functional, we can find both the equilibrium density distribution AND the free energy of the system to arbitrary precision. This and following chapters will present basic derivations to show how to connnect the density distribution to the thermodynamic potential, demonstrate that the equilibrium distribution indeed yields the minimum value of the free energy, and demonstrate how this framework can be used to study fluids in inhomogeneous environments.
+
+\section{Divining the free energy functional}
+In any situation involving thermodynamic or statistical mechanical analyses, one must always start by choosing the ensemble and/or thermodynamic potential best suited to the problem at hand. It will turn out to be the case that for deriving cDFT, the grand ensemble and grand potential will be the best suited to our needs. We can begin by considering the grand potential, and linking it to statistical values. The definition of the grand potential is
+\begin{equation}
+    \Omega = E - TS - \mu N \,.
+    \label{eq:grand_potential}
+\end{equation}
+Note that in the grand ensemble, the \(\mu\) and \(T\) are parameters, whereas \(N\) and \(E\) can vary on a microscopic scale, and therefore their thermodynamic values are given by their expectation values. Likewise, \(S\) depends on the ensemble as a whole and can be specified with the Gibbs entropy formula
+\begin{equation}
+    S = -k \trace\left[\rho_N^{(N)}(\Gamma_N)\ln\rho_N^{(N)}(\Gamma_N)\right]
+    \label{eq:GibbsEntropy}
+\end{equation}
+where \(\trace[~]\) denotes the classical trace and \(\rho_N^{(N)}(\Gamma_N)\) is the \(N\)-particle distribtuion function, i.e.\ the probability of finding the system of \(N\) particles in the microstate specified by the phase space coordinates \(\Gamma_N\). The equilibrium density distribution is given by
+\begin{equation}
+    \rho_N^{(N)}(\Gamma_N) = \frac{e^{-\beta(H-\mu N)}}{\Xi} \, .
+    \label{eq:rho}
+\end{equation}
+
+Let's begin by replacing the quantities on the right-hand side of Eq.~\ref{eq:grand_potential} with their statistical expectation values. The expectation value of any quantity, \(A\), that depends on the precise microstate of the ensemble is given by 
+\begin{equation}
+    \langle A \rangle = \trace \left[\rho_N^{(N)}A\right]
+    \label{eq:trace}
+\end{equation}
+where the explicit dependence on \(\Gamma_N\) has been dropped to simplify the notation. The total energy \(E\) is the expectation value of the system Hamiltonian \(H(\Gamma_N)\), and \(N\) is the expectation value of the number of particles in the system. Therefore we have that
+\begin{equation}
+    \setlength{\jot}{6pt}
+    \begin{split}
+    \Omega &= \langle H \rangle - TS - \mu \langle N \rangle \\
+    &= \trace\left[\rho_N^{(N)}H\right] - TS - \mu \trace\left[\rho_N^{(N)}N\right]
+    \end{split}
+\end{equation}
+Finally, we can use Eq.~\ref{eq:GibbsEntropy} to replace the entropy \(S\) with its statistical equivalent, giving us the final result
+\begin{equation}
+    \Omega = \trace\left[\rho_N^{(N)}H\right] + kT \trace\left[\rho_N^{(N)}\ln\rho_N^{(N)}\right] - \mu \trace\left[\rho_N^{(N)}N\right]
+\end{equation}
+Because the trace is a linear operation, we can combine terms to simplify this equation as
+\begin{equation}
+    \Omega = \trace\left[\rho_N^{(N)} \left(H - \mu N + \beta^{-1}\ln{\rho_N^{(N)}}\right)\right]
+    \label{eq:Omega_eq_functional}
+\end{equation}
+where \(\beta = 1 / k T\). 
+
+With Eq.~\ref{eq:Omega_eq_functional}, we have now been able to express the grand potential as a functional of the equilibrium density distribution \(\rho_N^{(N)}(\Gamma_N)\). Again, note that \(\mu\) and \(\beta\) are parameters and \(H(\Gamma_N)\) and \(N\) are functions of the phase space variables \(\Gamma_N\). With this equation in hand, we can consider what happens if we replace the equilibrium distribution \(\rho_N^{(N)}\) with some other distribution \(f(\Gamma_N)\). This yields a functional of the form
+\begin{equation}
+    \Omega\left[f(\Gamma_N)\right] = \trace\left[f(\Gamma_N) \left(H - \mu N + \beta^{-1}\ln{f(\Gamma_N)}\right)\right] \,.
+    \label{eq:Omega_functional}
+\end{equation}
+A useful property of this functional is that it is minimized by the true equilibrium density, and so we can apply a variational scheme to find the density distribution that minimizes the functional and hence recove the equilibrium density. Before moving on to determine how this variational scheme can be constructed, let us take a brief aside to show that the equilibrium density does in fact minimize Eq.~\ref{eq:Omega_eq_functional}
+
+To show that Eq.~\ref{eq:Omega_functional} is minimized by \(\rho_N^{(N)}\), let us consider the difference
+\begin{equation}
+    \Omega[f_N] - \Omega\left[\rho_N^{(N)}\right] = \trace \left[f_N\left(H-\mu N + \beta^{-1}\ln f_N\right)\right] - \Omega\left[\rho_N^{(N)}\right]
+\end{equation}
+Using the relation \(\beta\Omega = -\ln\Xi\) gives
+\begin{equation}
+    \Omega[f_N] - \Omega\left[\rho_N^{(N)}\right] = \trace \left[f_N\left(H-\mu N + \beta^{-1}\ln f_N\right)\right] + \beta^{-1}\ln\Xi
+\end{equation}
+If we take the the expectation value of \(\beta^{-1}\ln\Xi \) over the distribution \(f_N \), which because \(\beta^{-1} \) and \( \Xi \) are constants just returns \(\beta^{-1}\ln\Xi \), we have
+\begin{equation*}
+    \setlength{\jot}{8pt}
+    \begin{split}
+    \Omega[f_N] - \Omega\left[\rho_N^{(N)}\right] &= \trace \left[f_N\left(H-\mu N + \beta^{-1}\ln f_N + \beta^{-1}\ln\Xi\right)\right] \\
+    &= \trace \left[f_N\left(-\beta^{-1}\ln e^{-\beta(H-\mu N)} + \beta^{-1}\ln\Xi + \beta^{-1}\ln f_N \right)\right]
+    \end{split}
+\end{equation*}
+From Eq.~\ref{eq:rho}, we can combine terms above, yielding
+\begin{equation}
+    \setlength{\jot}{8pt}
+    \begin{split}
+    \Omega[f_N] - \Omega\left[\rho_N^{(N)}\right] = \trace \left[f_N\left(-\beta^{-1}\ln \rho_N^{(N)} + \beta^{-1}\ln f_N \right)\right] \\
+    \Omega[f_N] - \Omega\left[\rho_N^{(N)}\right] = \beta^{-1}\trace \left[f_N\ln \frac{f_N}{\rho_N^{(N)}}\right] \, .
+    \end{split}
+    \label{eq:omega_difference}
+\end{equation}
+If the right-hand side of Eq.~\ref{eq:omega_difference} is positive, we have thus proved that the equilibrium density does indeed minimize the grand potential functional. This can be done using Gibbs' inequality. To simplify the notation further, the subscripts and superscripts on $f_N$ and \(\rho_N^{(N)}\). In fact, if we take a partial trace so that the sum over $N$ and all of the integrals over phase space coordinates except for the position coordinates of a single particle are evaluated, we are left with the single-particle density \(\rho(\mathbf{r})\). In practice, this single particle density is the probability density we will be interested in for the purposes of this work.
+
+Gibb's inequality is a useful statement about the relative size of expectation values of the logarithm of probability distributions. To start, let's consider the right-hand side of Eq.~\ref{eq:omega_difference}.
+Multiplyling by \(\rho/\rho = 1 \) inside of the trace gives
+\begin{equation}
+    \trace \left[\rho\frac{f}{\rho}\ln\frac{f}{\rho}\right] \, .
+    \label{eq:trace1}
+\end{equation}
+We can also consider the fact that
+\begin{equation}
+    \trace \left[\rho \frac{f}{\rho}\right] = \trace\left[f\right] = 1
+\end{equation}
+We can therefore add zero to Eq.~\ref{eq:trace1} by adding \(\trace[\rho f/\rho - 1]\) which yields
+\begin{equation}
+    \begin{split}
+    \trace \left[\rho\frac{f}{\rho}\ln\frac{f}{\rho}\right] = \trace \left[\rho\frac{f}{\rho}\ln\frac{f}{\rho} - \rho \frac{f}{\rho} + \rho\right] \\
+    &= \trace\left[\rho\left(\frac{f}{\rho}\ln\frac{f}{\rho} - \frac{f}{\rho} + 1\right)\right]
+    \end{split}
+    \label{eq:gibbsinequality}
+\end{equation}
+The goal is to show that Eq.~\ref{eq:omega_difference} is positive or zero, and specifically that it is only zero when \( f=\rho \). We can prove this is true by considering the argument inside the parentheses in Eq.~\ref{eq:gibbsinequality}. Because \( \rho \) and \( f \) are probability densities, we know that they are always positive and by extension so is their ratio. If \(f/\rho \ln f/\rho \geq f/\rho - 1 \), then the argument of the trace is always positive and therefore the trace is also positive. If we consider the inequality \( x\ln x \geq x - 1 \), it is in fact the case that the equality only holds when \( x=1 \), which proves that \(\rho \) minimizes the functional Eq.~\ref{eq:Omega_functional}.
+
+\end{document}
