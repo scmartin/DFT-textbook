@@ -19,7 +19,7 @@ In any situation involving thermodynamic or statistical mechanical analyses, one
     \Omega = E - TS - \mu N \,.
     \label{eq:grand_potential}
 \end{equation}
-Note that in the grand ensemble, the \(\mu\) and \(T\) are parameters, whereas \(N\) and \(E\) can vary on a microscopic scale, and therefore their thermodynamic values are given by their expectation values. Likewise, \(S\) depends on the ensemble as a whole and can be specified with the Gibbs entropy formula
+Note that in the grand ensemble, the \(\mu \) and \(T\) are parameters, whereas \(N\) and \(E\) can vary on a microscopic scale, and therefore their thermodynamic values are given by their expectation values. Likewise, \(S\) depends on the ensemble as a whole and can be specified with the Gibbs entropy formula
 \begin{equation}
     S = -k \trace\left[\rho_N^{(N)}(\Gamma_N)\ln\rho_N^{(N)}(\Gamma_N)\right]
     \label{eq:GibbsEntropy}
@@ -54,7 +54,7 @@ Because the trace is a linear operation, we can combine terms to simplify this e
 \end{equation}
 where \(\beta = 1 / k T\). 
 
-With Eq.~\ref{eq:Omega_eq_functional}, we have now been able to express the grand potential as a functional of the equilibrium density distribution \(\rho_N^{(N)}(\Gamma_N)\). Again, note that \(\mu\) and \(\beta\) are parameters and \(H(\Gamma_N)\) and \(N\) are functions of the phase space variables \(\Gamma_N\). With this equation in hand, we can consider what happens if we replace the equilibrium distribution \(\rho_N^{(N)}\) with some other distribution \(f(\Gamma_N)\). This yields a functional of the form
+With Eq.~\ref{eq:Omega_eq_functional}, we have now been able to express the grand potential as a functional of the equilibrium density distribution \(\rho_N^{(N)}(\Gamma_N)\). Again, note that \(\mu \) and \(\beta \) are parameters and \(H(\Gamma_N)\) and \(N\) are functions of the phase space variables \(\Gamma_N\). With this equation in hand, we can consider what happens if we replace the equilibrium distribution \(\rho_N^{(N)}\) with some other distribution \(f(\Gamma_N)\). This yields a functional of the form
 \begin{equation}
     \Omega\left[f(\Gamma_N)\right] = \trace\left[f(\Gamma_N) \left(H - \mu N + \beta^{-1}\ln{f(\Gamma_N)}\right)\right] \,.
     \label{eq:Omega_functional}
@@ -65,7 +65,7 @@ To show that Eq.~\ref{eq:Omega_functional} is minimized by \(\rho_N^{(N)}\), let
 \begin{equation}
     \Omega[f_N] - \Omega\left[\rho_N^{(N)}\right] = \trace \left[f_N\left(H-\mu N + \beta^{-1}\ln f_N\right)\right] - \Omega\left[\rho_N^{(N)}\right]
 \end{equation}
-Using the relation \(\beta\Omega = -\ln\Xi\) gives
+Using the relation \(\beta\Omega = -\ln\Xi \) gives
 \begin{equation}
     \Omega[f_N] - \Omega\left[\rho_N^{(N)}\right] = \trace \left[f_N\left(H-\mu N + \beta^{-1}\ln f_N\right)\right] + \beta^{-1}\ln\Xi
 \end{equation}
@@ -86,7 +86,8 @@ From Eq.~\ref{eq:rho}, we can combine terms above, yielding
     \end{split}
     \label{eq:omega_difference}
 \end{equation}
-If the right-hand side of Eq.~\ref{eq:omega_difference} is positive, we have thus proved that the equilibrium density does indeed minimize the grand potential functional. This can be done using Gibbs' inequality. To simplify the notation further, the subscripts and superscripts on $f_N$ and \(\rho_N^{(N)}\). In fact, if we take a partial trace so that the sum over $N$ and all of the integrals over phase space coordinates except for the position coordinates of a single particle are evaluated, we are left with the single-particle density \(\rho(\mathbf{r})\). In practice, this single particle density is the probability density we will be interested in for the purposes of this work.
+If the right-hand side of Eq.~\ref{eq:omega_difference} is positive, we have thus proved that the equilibrium density does indeed minimize the grand potential functional. This can be done using Gibbs' inequality. To simplify the notation further, the subscripts and superscripts on $f_N$ and \(\rho_N^{(N)}\). In fact, if we take a partial trace so that the sum over \(N\) and all of the integrals over phase space coordinates except for the position coordinates of a single particle are evaluated, we are left with the single-particle density \(\rho(\mathbf{r})\). In practice, this single particle density is the probability density we will be interested in for the purposes of this work.
+
 
 Gibb's inequality is a useful statement about the relative size of expectation values of the logarithm of probability distributions. To start, let's consider the right-hand side of Eq.~\ref{eq:omega_difference}.
 Multiplyling by \(\rho/\rho = 1 \) inside of the trace gives
